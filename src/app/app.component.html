@@ -1,1 +1,34 @@
-<h1>App Workings</h1>
+<div class="container">
+  <div class="todo-container" (click)="todoContainerHandler()">
+    <h1 class="text-center"> {{title}} </h1>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="form-group d-flex">
+          <!-- <input type="text" class="form-control" value ="{{ todoContent }}"> imterpolation -->
+          <input type="text" class="form-control" [(ngModel)]="todoContent" (keyup.enter)="onChange()">
+          <!-- thay (keyup) ="onchange($event) == (keyup.enter) ="onChange()"" -->
+          <!--property: nếu sửa thì nó sẽ được cập nhật theo-->
+          <button class="btn btn-info" (click)="addTodohandler($event)">Add</button>
+          <!-- chỉ có event dùng binding event phải dùng invoke(run) -->
+        </div>
+        <ul class="list-group">
+          <li *ngFor="let item of todos" class="list-group-item" (click)="handleTodoComplete(item)" [ngClass] ="{'bg-primary':item.complete,'text-white':item.complete}">
+            <div class="d-flex justify-content-between ">
+              <div class="mr-3" >
+                <!-- <i *ngIf="item.complete" class="bi bi-check2 mr-2"></i> -->
+                <h3 [ngClass]="{'text-linethrough': item.complete}">{{item.name | uppercase | sumary:30}}</h3>
+                <p>{{item.description|sumary:40}}</p>
+              </div>
+              <i class="bi bi-trash-fill mt-2"
+                (click)="handleDelete($event, item)"></i>
+            </div>
+
+            <!-- dùng [ngClass]="{'text-linethrough': item.complete}" thay cho  [class.text-linethrough]="item.complete" để có thể có nhiều class thêm vào. 2 cách như nhau -->
+          </li>
+        </ul>
+       
+      </div>
+    </div>
+
+  </div>
+</div>
