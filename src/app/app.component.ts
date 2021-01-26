@@ -48,17 +48,20 @@ export class AppComponent {
     },
   ];
 
-  addNewTodo() {
+  addNewTodo(): void {
     if (this.todoContent === '') return;
     this.todos.push({
       name: this.todoContent,
+      description: 'this.description',
       id: ++this.count,
       complete: false,
     });
     this.todoContent = '';
   }
 
-  addTodohandler($event): void {
+  addTodohandler(data): void {
+    console.log(data);
+
     // console.log(this.todoContent);
     // $event.stopPropagation(); // dừng các event ngoài khi click vào event hiện tại
     this.addNewTodo();

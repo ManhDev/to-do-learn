@@ -8,25 +8,27 @@
           <input type="text" class="form-control" [(ngModel)]="todoContent" (keyup.enter)="onChange()">
           <!-- thay (keyup) ="onchange($event) == (keyup.enter) ="onChange()"" -->
           <!--property: nếu sửa thì nó sẽ được cập nhật theo-->
-          <button class="btn btn-info" (click)="addTodohandler($event)">Add</button>
+          <!-- <button class="btn btn-info" (click)="addTodohandler($event)">Add</button> -->
           <!-- chỉ có event dùng binding event phải dùng invoke(run) -->
+          <app-button name="New Add" (handle)="addTodohandler($event)"></app-button>
+          <!-- name là attribute dùng để export sang ts của button để thay đổi tên của input để tái sử dụng -->
         </div>
         <ul class="list-group">
-          <li *ngFor="let item of todos" class="list-group-item" (click)="handleTodoComplete(item)" [ngClass] ="{'bg-primary':item.complete,'text-white':item.complete}">
+          <li *ngFor="let item of todos" class="list-group-item" (click)="handleTodoComplete(item)"
+            [ngClass]="{'bg-primary':item.complete,'text-white':item.complete}">
             <div class="d-flex justify-content-between ">
-              <div class="mr-3" >
+              <div class="mr-3">
                 <!-- <i *ngIf="item.complete" class="bi bi-check2 mr-2"></i> -->
-                <h3 [ngClass]="{'text-linethrough': item.complete}">{{item.name | uppercase | sumary:30}}</h3>
+                <h5 [ngClass]="{'text-linethrough': item.complete}">{{item.name | uppercase}}</h5>
                 <p>{{item.description|sumary:40}}</p>
               </div>
-              <i class="bi bi-trash-fill mt-2"
-                (click)="handleDelete($event, item)"></i>
+              <i class="bi bi-trash-fill mt-2" (click)="handleDelete($event, item)"></i>
             </div>
 
             <!-- dùng [ngClass]="{'text-linethrough': item.complete}" thay cho  [class.text-linethrough]="item.complete" để có thể có nhiều class thêm vào. 2 cách như nhau -->
           </li>
         </ul>
-       
+
       </div>
     </div>
 
