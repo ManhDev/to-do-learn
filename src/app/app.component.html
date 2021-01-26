@@ -5,7 +5,15 @@
       <div class="col-lg-7">
         <div class="form-group d-flex">
           <!-- <input type="text" class="form-control" value ="{{ todoContent }}"> imterpolation -->
-          <input type="text" class="form-control" [(ngModel)]="todoContent" (keyup.enter)="onChange()">
+          <!-- cach 1 nhiều option đầu vào -->
+          <!-- <input type="text" class="form-control" [(ngModel)]="todoContent" (keyup.enter)="onChange()" appInputFormat
+            [inputFormatType]="'lowercase'" /> -->
+
+          <!-- Cách 2 1 option đầu vào -->
+          <input type="text" class="form-control" [(ngModel)]="todoContent" (keyup.enter)="onChange()"
+            [appInputFormat]="'uppercase'" />
+
+          <!-- Phải truyền là string [inputFormatType]="'uppercase'" -->
           <!-- thay (keyup) ="onchange($event) == (keyup.enter) ="onChange()"" -->
           <!--property: nếu sửa thì nó sẽ được cập nhật theo-->
           <!-- <button class="btn btn-info" (click)="addTodohandler($event)">Add</button> -->

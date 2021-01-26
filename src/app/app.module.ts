@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SumaryPipe } from './sumary.pipe';
 import { ButtonComponent } from './components/button/button.component';
+import { InputFormatDirective } from './input-format.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     SumaryPipe,
     ButtonComponent,
+    InputFormatDirective,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
