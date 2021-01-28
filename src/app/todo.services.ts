@@ -1,4 +1,12 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+  // nếu có thì k cần providers bên app.module.ts
+})
 export default class TodoService {
+  constructor() {}
+  // tslint:disable-next-line: typedef
   getTodos() {
     return [
       {

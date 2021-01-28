@@ -1,58 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import TodoService from './todo.services';
+import { TodoHttpService } from './todo.http.service';
+
+interface Todo {
+  id: number;
+  title: string;
+  complete: boolean;
+  body: string;
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  // tslint:disable-next-line: no-inferrable-types
   title: string = 'Todo App';
+  // tslint:disable-next-line: no-inferrable-types
   count: number = 5;
   todoContent = '';
-  todos: any[] = [
-    {
-      id: 1,
-      complete: false,
-      name:
-        'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-      description:
-        'quia et suscipitsuscipit recusandae consequuntur expedita et cumreprehenderit molestiae ut ut quas totamnostrum rerum est autem sunt rem eveniet architecto ',
-    },
-    {
-      id: 2,
-      complete: false,
-      name: 'qui est esse',
-      description:
-        'est rerum tempore vitaesequi sint nihil reprehenderit dolor beatae ea dolores nequefugiat blanditiis voluptate porro vel nihil molestiae ut reiciendisqui aperiam non debitis possimus qui neque nisi nulla ',
-    },
-    {
-      id: 3,
-      complete: false,
-      name: 'ea molestias quasi exercitationem repellat qui ipsa sit aut',
-      description:
-        'et iusto sed quo iurevoluptatem occaecati omnis eligendi aut advoluptatem doloribus vel accusantium quis pariaturmolestiae porro eius odio et labore et velit aut ',
-    },
-    {
-      id: 4,
-      complete: false,
-      name: 'eum et est occaecati',
-      description:
-        'ullam et saepe reiciendis voluptatem adipiscisit amet autem assumenda provident rerum culpaquis hic commodi nesciunt rem tenetur doloremque ipsam iurequis sunt voluptatem rerum illo velit ',
-    },
-    {
-      id: 5,
-      complete: false,
-      name: 'nesciunt quas odio',
-      description:
-        'repudiandae veniam quaerat sunt sedalias aut fugiat sit autem sed estvoluptatem omnis possimus esse voluptatibus quisest aut tenetur dolor neque ',
-    },
-  ];
+  todos: any[] = [];
+
+  constructor(private todoService: TodoHttpService) {
+    // const todoService = new TodoService();
+    // this.todos = this.todoService.getTodos(); không nên để constructor thực hiện hành động
+    //  thêm implements OnInit và method của ngOnInit để chạy hành động của contructor
+  }
+  ngOnInit(): void {
+    // cách 2
+    // this.todos = this.todoService.getTodos()
+
+    // dùng json
+    this.todoService.getTodos().subscribe((data: any) => {
+      this.todos = data;
+    });
+  }
 
   addNewTodo(): void {
+    // tslint:disable-next-line: curly
     if (this.todoContent === '') return;
     this.todos.push({
-      name: this.todoContent,
-      description: 'this.description',
+      title: this.todoContent,
+      body: 'this.description',
       id: ++this.count,
       complete: false,
     });
@@ -67,6 +57,7 @@ export class AppComponent {
     this.addNewTodo();
   }
 
+  // tslint:disable-next-line: typedef
   todoContainerHandler() {
     // console.log("todo container");
   }
@@ -79,14 +70,17 @@ export class AppComponent {
   // }
 
   // cách 2
+  // tslint:disable-next-line: typedef
   onChange() {
     this.addNewTodo();
   }
 
+  // tslint:disable-next-line: typedef
   handleTodoComplete(todo) {
     // lấy todo của template html vào trong hàm, gọi chính cái li được click
     this.todos = this.todos.map((item) => {
-      if (item.id == todo.id) {
+      // tslint:disable-next-line: triple-equals
+      if (item.id === todo.id) {
         // false thành true và ngược lại khi click
         item.complete = !item.complete;
       }
@@ -94,9 +88,11 @@ export class AppComponent {
     });
   }
 
+  // tslint:disable-next-line: typedef
   handleDelete($event, todo) {
     $event.stopPropagation();
     this.todos = this.todos.filter((item) => {
+      // tslint:disable-next-line: triple-equals
       return item.id != todo.id;
     });
   }

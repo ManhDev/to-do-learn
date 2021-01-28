@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input() name: string;
   //  dùng attribute của input để lấy attribute của button
+  // tslint:disable-next-line: no-output-rename
   @Output('handle') handle: EventEmitter<any> = new EventEmitter();
   constructor() {}
 

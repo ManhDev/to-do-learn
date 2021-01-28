@@ -27,8 +27,8 @@
             <div class="d-flex justify-content-between ">
               <div class="mr-3">
                 <!-- <i *ngIf="item.complete" class="bi bi-check2 mr-2"></i> -->
-                <h5 [ngClass]="{'text-linethrough': item.complete}">{{item.name | uppercase}}</h5>
-                <p>{{item.description|sumary:40}}</p>
+                <h5 [ngClass]="{'text-linethrough': item.complete}">{{item.title | uppercase}}</h5>
+                <p>{{item.body|sumary:40}}</p>
               </div>
               <i class="bi bi-trash-fill mt-2" (click)="handleDelete($event, item)"></i>
             </div>
