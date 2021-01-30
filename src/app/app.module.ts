@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SumaryPipe } from './sumary.pipe';
@@ -25,7 +26,28 @@ import { SettingComponent } from './setting/setting.component';
     SettingComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: 'todos',
+        component: TodosComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingComponent,
+      },
+      {
+        path: '',
+        redirectTo: '/todos',
+        pathMatch: 'full',
+        // pathMatch là phải để path chỉ là string trắng
+      },
+    ]),
+  ],
   providers: [TodoHttpService, TodoService],
   bootstrap: [AppComponent],
 })

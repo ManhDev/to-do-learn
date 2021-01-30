@@ -1,16 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" routerLink="/">
             <img src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" width="150" alt="Angular Logo">
         </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Todos</a>
+                    <!-- routerLink thay cho href để tạo single page -->
+                    <!-- routerLinkActive để thể hiện router tương ứng được sử, nên đặt cùng với routerLink để nó dễ tìm thấy nhau để hiển thị-->
+                    <a class="nav-link" routerLinkActive="active" routerLink="/todos">Todos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Setting</a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="/settings">Setting</a>
                 </li>
             </ul>
         </div>
