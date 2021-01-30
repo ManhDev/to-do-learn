@@ -14,6 +14,7 @@ import { TodoHttpService } from './todo.http.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TodosComponent } from './todos/todos.component';
 import { SettingComponent } from './setting/setting.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SettingComponent } from './setting/setting.component';
     NavbarComponent,
     TodosComponent,
     SettingComponent,
+    NotfoundComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -33,6 +35,12 @@ import { SettingComponent } from './setting/setting.component';
     HttpClientModule,
     RouterModule.forRoot([
       {
+        path: '',
+        redirectTo: '/todos',
+        pathMatch: 'full',
+        // pathMatch là phải để path chỉ là string trắng
+      },
+      {
         path: 'todos',
         component: TodosComponent,
       },
@@ -41,10 +49,9 @@ import { SettingComponent } from './setting/setting.component';
         component: SettingComponent,
       },
       {
-        path: '',
-        redirectTo: '/todos',
-        pathMatch: 'full',
-        // pathMatch là phải để path chỉ là string trắng
+        // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
+        path: '**',
+        component: NotfoundComponent,
       },
     ]),
   ],
