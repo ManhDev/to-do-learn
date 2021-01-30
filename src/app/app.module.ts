@@ -10,6 +10,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { InputFormatDirective } from './input-format.directive';
 import TodoService from './todo.services';
 import { TodoHttpService } from './todo.http.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TodoHttpService } from './todo.http.service';
     SumaryPipe,
     ButtonComponent,
     InputFormatDirective,
+    NavbarComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
