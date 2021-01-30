@@ -1,0 +1,46 @@
+<div class="todo-container" (click)="todoContainerHandler()">
+    <h1 class="text-center"> {{title}} </h1>
+    <div class="row justify-content-center">
+        <div>
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control" value ="{{ todoContent }}"> imterpolation -->
+                <!-- cach 1 nhiều option đầu vào -->
+                <!-- <input type="text" class="form-control" [(ngModel)]="todoContent" (keyup.enter)="onChange()" appInputFormat
+            [inputFormatType]="'lowercase'" /> -->
+
+                <!-- Cách 2 1 option đầu vào -->
+                <input type="text" class="form-control mr-4" [(ngModel)]="todoContent" (keyup.enter)="onChange()"
+                    [appInputFormat]="'uppercase'" />
+
+                <!-- Phải truyền là string [inputFormatType]="'uppercase'" -->
+                <!-- thay (keyup) ="onchange($event) == (keyup.enter) ="onChange()"" -->
+                <!--property: nếu sửa thì nó sẽ được cập nhật theo-->
+                <!-- <button class="btn btn-info" (click)="addTodohandler($event)">Add</button> -->
+                <!-- chỉ có event dùng binding event phải dùng invoke(run) -->
+                <app-button name="Add" (handle)="addTodohandler($event)"></app-button>
+                <!-- name là attribute dùng để export sang ts của button để thay đổi tên của input để tái sử dụng -->
+            </div>
+            <ul class="list-group">
+                <li *ngFor="let item of todos" class="list-group-item">
+                    <!-- [ngClass]="{'bg-primary':item.complete,'text-white':item.complete}" -->
+                    <div class="d-flex justify-content-between ">
+                        <div class="mr-3">
+                            <!-- <i *ngIf="item.complete" class="bi bi-check2 mr-2"></i> -->
+                            <h5 [ngClass]="{'text-linethrough': item.complete}">{{item.title | uppercase}}</h5>
+                            <p>{{item.body|sumary:40}}</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" (click)="handleTodoComplete($event,item)">Complete</button>
+                            <i class="bi bi-trash-fill mt-2 ml-3" (click)="handleDelete($event, item)"></i>
+                        </div>
+
+                    </div>
+
+                    <!-- dùng [ngClass]="{'text-linethrough': item.complete}" thay cho  [class.text-linethrough]="item.complete" để có thể có nhiều class thêm vào. 2 cách như nhau -->
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>

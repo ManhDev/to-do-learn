@@ -11,6 +11,7 @@ import { InputFormatDirective } from './input-format.directive';
 import TodoService from './todo.services';
 import { TodoHttpService } from './todo.http.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TodosComponent } from './todos/todos.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ButtonComponent,
     InputFormatDirective,
     NavbarComponent,
+    TodosComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],

@@ -1,13 +1,1 @@
-.todo-container {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  padding: 15px 30px;
-  border-top: none;
-}
 
-.text-linethrough {
-  text-decoration: line-through;
-}
-.todo-delete-btn {
-  width: 24px;
-  height: 24px;
-}
