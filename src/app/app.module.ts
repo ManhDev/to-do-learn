@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TodosComponent } from './todos/todos.component';
 import { SettingComponent } from './setting/setting.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { TodoDetailsComponent } from './todo-details/todo-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     TodosComponent,
     SettingComponent,
     NotfoundComponent,
+    TodoDetailsComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -43,6 +45,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
       {
         path: 'todos',
         component: TodosComponent,
+      },
+      {
+        // xem details theo id
+        path: 'todos/:id',
+        component: TodoDetailsComponent,
       },
       {
         path: 'settings',
