@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import TodoService from './../todo.services';
 import { TodoHttpService } from './../todo.http.service';
 
@@ -14,7 +14,7 @@ interface Todo {
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css'],
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line: no-inferrable-types
   title: string = 'Todo App';
   // tslint:disable-next-line: no-inferrable-types
@@ -99,5 +99,11 @@ export class TodosComponent implements OnInit {
       // tslint:disable-next-line: triple-equals
       return item.id != todo.id;
     });
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destrouy todo');
+
+    // ondestroy(): được gọi khi cần giải phóng bộ nhớ, hủy subscribe
   }
 }

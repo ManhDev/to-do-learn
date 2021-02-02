@@ -10,4 +10,7 @@ export class TodoHttpService {
   getTodos() {
     return this.http.get('https://jsonplaceholder.typicode.com/posts');
   }
+  getTodo(id) {
+    return this.http.get('https://jsonplaceholder.typicode.com/posts/' + id);
+  }
 }

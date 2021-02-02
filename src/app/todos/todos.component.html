@@ -26,7 +26,9 @@
                     <div class="d-flex justify-content-between ">
                         <div class="mr-3">
                             <!-- <i *ngIf="item.complete" class="bi bi-check2 mr-2"></i> -->
-                            <h5 [ngClass]="{'text-linethrough': item.complete}">{{item.title | uppercase}}</h5>
+                            <h5 [ngClass]="{'text-linethrough': item.complete}"><a routerLink="/todos/{{item.id}}"
+                                    [queryParams]="{orderBy: name}">{{item.title |
+                                    uppercase}}</a></h5>
                             <p>{{item.body|sumary:40}}</p>
                         </div>
                         <div>
