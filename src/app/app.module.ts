@@ -16,6 +16,8 @@ import { TodosComponent } from './todos/todos.component';
 import { SettingComponent } from './setting/setting.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
+import { Tab1Component } from './setting/tab1/tab1.component';
+import { Tab2Component } from './setting/tab2/tab2.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
     SettingComponent,
     NotfoundComponent,
     TodoDetailsComponent,
+    Tab1Component,
+    Tab2Component,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -54,6 +58,19 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
       {
         path: 'settings',
         component: SettingComponent,
+        children:[
+          {
+            path:'',
+            redirectTo:'tab1',
+            pathMatch:'full'
+          },{
+          path:'tab1',
+          component:Tab1Component
+        },
+        {
+          path:'tab2',
+          component:Tab2Component
+        }]
       },
       {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
