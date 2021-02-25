@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { PreloadAllModules } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SumaryPipe } from './sumary.pipe';
@@ -73,11 +74,17 @@ import { Tab2Component } from './setting/tab2/tab2.component';
         }]
       },
       {
+        path:'lazy',
+        loadChildren: () => import('./lazyload/lazyload.module').then(m => m.LazyloadModule)
+      },
+      {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
         path: '**',
         component: NotfoundComponent,
       },
-    ]),
+    ],{
+      preloadingStrategy: PreloadAllModules
+    }),
   ],
   providers: [TodoHttpService, TodoService],
   bootstrap: [AppComponent],
