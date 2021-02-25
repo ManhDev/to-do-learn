@@ -1,3 +1,4 @@
+import { CanExitWithoutSaveGuard } from './can-exit-without-save.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { Tab1Component } from './setting/tab1/tab1.component';
 import { Tab2Component } from './setting/tab2/tab2.component';
 import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.component';
+import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.compo
     Tab1Component,
     Tab2Component,
     AuxiliaryRouteComponent,
+    CanDeactiveComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -78,6 +81,11 @@ import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.compo
       {
         path:'lazy',
         loadChildren: () => import('./lazyload/lazyload.module').then(m => m.LazyloadModule)
+      },
+      {
+        path: 'can-deactivate',
+        component: CanDeactiveComponent,
+        canDeactivate:[CanExitWithoutSaveGuard]
       },
       {
         path:'aux-route',
