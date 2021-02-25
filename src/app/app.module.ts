@@ -19,6 +19,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { Tab1Component } from './setting/tab1/tab1.component';
 import { Tab2Component } from './setting/tab2/tab2.component';
+import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { Tab2Component } from './setting/tab2/tab2.component';
     TodoDetailsComponent,
     Tab1Component,
     Tab2Component,
+    AuxiliaryRouteComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -78,12 +80,18 @@ import { Tab2Component } from './setting/tab2/tab2.component';
         loadChildren: () => import('./lazyload/lazyload.module').then(m => m.LazyloadModule)
       },
       {
+        path:'aux-route',
+        component:AuxiliaryRouteComponent,
+        outlet:'outlet-name'
+      },
+      {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
         path: '**',
         component: NotfoundComponent,
       },
     ],{
       preloadingStrategy: PreloadAllModules
+      //preload module
     }),
   ],
   providers: [TodoHttpService, TodoService],
