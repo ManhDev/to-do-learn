@@ -5,14 +5,27 @@
         </a>
 
         <div class="navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item" *ngIf="auth.isLogIn()">
                     <!-- routerLink thay cho href để tạo single page -->
                     <!-- routerLinkActive để thể hiện router tương ứng được sử, nên đặt cùng với routerLink để nó dễ tìm thấy nhau để hiển thị-->
                     <a class="nav-link" routerLinkActive="active" routerLink="/todos">Todos</a>
                 </li>
-                <li class="nav-item">
+                <!-- ẩn hiện khi đăng nhập -->
+                <li class="nav-item" *ngIf="auth.isLogIn()">
                     <a class="nav-link" routerLinkActive="active" routerLink="/settings">Setting</a>
+                </li>
+                <li class="nav-item" *ngIf="auth.isLogIn() && auth.isAdmin()">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/admin">Admin</a>
+                </li>
+                <li class="nav-item ml-auto" *ngIf="!auth.isLogIn()">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/login">Log In</a>
+                </li>
+                <li class="nav-item ml-auto" *ngIf="auth.isLogIn()">
+                    <span class="nav-link" (click)="logOut()">Log Out</span>
                 </li>
             </ul>
         </div>
