@@ -22,6 +22,7 @@ import { Tab1Component } from './setting/tab1/tab1.component';
 import { Tab2Component } from './setting/tab2/tab2.component';
 import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.component';
 import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
+import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
     Tab2Component,
     AuxiliaryRouteComponent,
     CanDeactiveComponent,
+    TemplateDrivenFormComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -91,6 +93,10 @@ import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
         path:'aux-route',
         component:AuxiliaryRouteComponent,
         outlet:'outlet-name'
+      },
+      {
+        path:'templateform',
+        component:TemplateDrivenFormComponent
       },
       {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
