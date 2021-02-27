@@ -1,7 +1,7 @@
 import { CanExitWithoutSaveGuard } from './can-exit-without-save.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -23,6 +23,7 @@ import { Tab2Component } from './setting/tab2/tab2.component';
 import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.component';
 import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,14 @@ import { TemplateDrivenFormComponent } from './template-driven-form/template-dri
     AuxiliaryRouteComponent,
     CanDeactiveComponent,
     TemplateDrivenFormComponent,
+    ReactiveFormComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
       {
@@ -97,6 +100,10 @@ import { TemplateDrivenFormComponent } from './template-driven-form/template-dri
       {
         path:'templateform',
         component:TemplateDrivenFormComponent
+      },
+      {
+        path:'reactiveform',
+        component:ReactiveFormComponent
       },
       {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
