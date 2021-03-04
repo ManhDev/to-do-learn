@@ -1,0 +1,15 @@
+<div class="row mt-5">
+    <div class="col-10">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchValue" (input)="doSearch()">
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-10">
+        <ul class="list-group" *ngIf="results.length > 0">
+            <li class="list-group-item" *ngFor="let result of results">{{result}}</li>
+        </ul>
+    </div>
+</div>

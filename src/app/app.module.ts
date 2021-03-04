@@ -24,6 +24,7 @@ import { AuxiliaryRouteComponent } from './auxiliary-route/auxiliary-route.compo
 import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { HttpClientComponent } from './http-client/http-client.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     CanDeactiveComponent,
     TemplateDrivenFormComponent,
     ReactiveFormComponent,
+    HttpClientComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -69,48 +71,52 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
       {
         path: 'settings',
         component: SettingComponent,
-        children:[
+        children: [
           {
-            path:'',
-            redirectTo:'tab1',
-            pathMatch:'full'
-          },{
-          path:'tab1',
-          component:Tab1Component
-        },
-        {
-          path:'tab2',
-          component:Tab2Component
-        }]
+            path: '',
+            redirectTo: 'tab1',
+            pathMatch: 'full'
+          }, {
+            path: 'tab1',
+            component: Tab1Component
+          },
+          {
+            path: 'tab2',
+            component: Tab2Component
+          }]
       },
       {
-        path:'lazy',
+        path: 'lazy',
         loadChildren: () => import('./lazyload/lazyload.module').then(m => m.LazyloadModule)
       },
       {
         path: 'can-deactivate',
         component: CanDeactiveComponent,
-        canDeactivate:[CanExitWithoutSaveGuard]
+        canDeactivate: [CanExitWithoutSaveGuard]
       },
       {
-        path:'aux-route',
-        component:AuxiliaryRouteComponent,
-        outlet:'outlet-name'
+        path: 'aux-route',
+        component: AuxiliaryRouteComponent,
+        outlet: 'outlet-name'
       },
       {
-        path:'templateform',
-        component:TemplateDrivenFormComponent
+        path: 'templateform',
+        component: TemplateDrivenFormComponent
       },
       {
-        path:'reactiveform',
-        component:ReactiveFormComponent
+        path: 'reactiveform',
+        component: ReactiveFormComponent
+      },
+      {
+        path: 'httpclient',
+        component: HttpClientComponent
       },
       {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
         path: '**',
         component: NotfoundComponent,
       },
-    ],{
+    ], {
       preloadingStrategy: PreloadAllModules
       //preload module
     }),
@@ -118,4 +124,4 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
   providers: [TodoHttpService, TodoService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
