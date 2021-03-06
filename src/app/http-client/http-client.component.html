@@ -1,6 +1,6 @@
 <div class="row mt-5">
     <div class="col-10">
-        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchValue" (input)="doSearch()">
+        <input type="text" class="form-control" [formControl]="searchValue">
     </div>
     <div class="col-2">
 
