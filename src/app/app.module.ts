@@ -1,9 +1,10 @@
+import { AuthInterceptor } from './auth.interceptor';
 import { CanExitWithoutSaveGuard } from './can-exit-without-save.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { PreloadAllModules } from '@angular/router';
 
@@ -25,6 +26,7 @@ import { CanDeactiveComponent } from './can-deactive/can-deactive.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { HttpClientComponent } from './http-client/http-client.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { HttpClientComponent } from './http-client/http-client.component';
     TemplateDrivenFormComponent,
     ReactiveFormComponent,
     HttpClientComponent,
+    LoginFormComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -112,6 +115,10 @@ import { HttpClientComponent } from './http-client/http-client.component';
         component: HttpClientComponent
       },
       {
+        path: 'loginform',
+        component: LoginFormComponent
+      },
+      {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
         path: '**',
         component: NotfoundComponent,
@@ -121,7 +128,7 @@ import { HttpClientComponent } from './http-client/http-client.component';
       //preload module
     }),
   ],
-  providers: [TodoHttpService, TodoService],
+  providers: [TodoHttpService, TodoService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
