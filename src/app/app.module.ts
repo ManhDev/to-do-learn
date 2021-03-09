@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { PreloadAllModules } from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { SumaryPipe } from './sumary.pipe';
@@ -27,6 +28,8 @@ import { TemplateDrivenFormComponent } from './template-driven-form/template-dri
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialExampleComponent } from './material-example/material-example.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     ReactiveFormComponent,
     HttpClientComponent,
     LoginFormComponent,
+    MaterialExampleComponent,
     // pipe/ component / directive sẽ được khai báo tại đây.
   ],
   imports: [
@@ -54,7 +58,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule,MatButtonModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -119,6 +123,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
         component: LoginFormComponent
       },
       {
+        path: 'material',
+        component: MaterialExampleComponent
+      },
+      {
         // ** path sai bất kì (**: wild-card) phải để TH cuối cùng
         path: '**',
         component: NotfoundComponent,
@@ -127,6 +135,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
       preloadingStrategy: PreloadAllModules
       //preload module
     }),
+    BrowserAnimationsModule,
   ],
   providers: [TodoHttpService, TodoService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent],
